@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Asistente de Cocina IA — Rediseño</title>
+
+    <link rel="stylesheet" href="index.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest" type="text/javascript"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+  </head>
+  <body>
+    <header>
+      <h1>Asistente de Coc<b>I</b>n<b>A</b></h1>
+      <p id="outputMessage">Espera a que el modelo se cargue antes de habilitar la cámara</p>
+    </header>
+
+    <main id="app" class="layout-grid">
+      <aside class="side-panel">
+        <h3>Controles</h3>
+
+        <div class="control-group">
+          <button id="btnEnableWebcam" disabled class="btn primary">Habilitar cámara</button>
+          <button id="btnStopWebcam" class="btn ghost">Parar cámara</button>
+        </div>
+
+        <div class="control-group">
+          <label for="threshold">Umbral de confianza: <span id="thresholdVal">0.60</span></label>
+          <input id="threshold" type="range" min="0" max="1" step="0.01" value="0.6" />
+        </div>
+
+        <div class="control-group">
+          <button id="toggleDetection" class="btn">Detección: ON</button>
+        </div>
+
+        <div class="info small muted">
+          Sugerencias: el panel derecho muestra un mini-log. Ajusta umbral para reducir falsos positivos.
+        </div>
+      </aside>
+
+      <section id="liveView" class="camView">
+        <div class="video-container">
+          <video id="webcam" autoplay muted playsinline></video>
+        </div>
+
+        <div class="actions">
+          <div class="status">Estado: <span id="statusText">Inactivo</span></div>
+          <div class="small muted">Tip: espera a que cargue el modelo antes de habilitar la cámara</div>
+        </div>
+      </section>
+
+      <aside class="side-panel">
+        <h3>Últimas detecciones</h3>
+        <div id="miniLog" class="log">—</div>
+      </aside>
+
+      <div id="bottomBlock" class="bottom-block bottom-hidden" aria-live="assertive" role="status"></div>
+    </main>
+
+    <script src="index.js"></script>
+  </body>
+</html>

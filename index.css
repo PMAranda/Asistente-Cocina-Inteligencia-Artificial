@@ -1,0 +1,173 @@
+/* Reset mínimo */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root{
+  --bg1: #f5f6f7;
+  --panel: #ffffff;
+  --muted: #7f8c8d;
+  --accent: #3498db;
+  --danger: #e74c3c;
+  --shadow: 0 18px 50px rgba(0,0,0,0.10);
+  --radius: 12px;
+}
+
+/* GENERAL */
+body{
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(0deg, var(--bg1) 0%, #b2dbef 100%);
+  min-height: 100vh;
+  padding: 26px;
+  color: #22303a;
+}
+
+header { text-align:center; margin-bottom:18px; }
+header h1 {
+  font-weight: 500;        /* un poco más de presencia que 300 */
+  font-size: 2.4rem;        /* ligeramente más grande */
+  color: #2c3e50;          /* tu color base */
+  letter-spacing: 1px;      /* espacio sutil entre letras */
+}
+header p { font-size:0.95rem; color:var(--muted); margin-top:6px; }
+
+/* LAYOUT: three columns with bottom block */
+.layout-grid{
+  display: grid;
+  grid-template-columns: 1fr 640px 1fr;
+  gap: 20px;
+  align-items: start;
+  max-width: 1200px;
+  margin: 0 auto;
+  row-gap: 24px;
+}
+
+/* PANELS */
+.side-panel{
+  background:var(--panel);
+  border-radius:var(--radius);
+  padding:18px;
+  box-shadow: var(--shadow);
+  min-height: 420px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.camView{
+  background:var(--panel);
+  border-radius:var(--radius);
+  padding:18px;
+  box-shadow: var(--shadow);
+}
+
+.btn{
+  border: none;
+  padding: 10px 14px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:600;
+}
+.btn.primary{ background:var(--accent); color:white; }
+.btn.ghost{ background:transparent; border:1px solid rgba(0,0,0,0.06); color:var(--accent); }
+
+.control-group{ display:flex; gap:10px; flex-direction:column; }
+.small{ font-size:0.85rem; }
+.muted{ color:var(--muted); }
+
+/* VIDEO */
+.video-container{
+  width:100%;
+  height: 420px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  background:#ddd;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+#webcam{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+/* highlighters creados dinámicamente tendrán clase .highlighter; fija estilos base aquí */
+.highlighter{
+  position: absolute;
+  box-sizing: border-box;
+  pointer-events: none;
+  background: transparent;
+  z-index: 8;
+}
+
+/* texto que se crea sobre el video */
+.video-label{
+  position:absolute;
+  pointer-events:none;
+  z-index:10;
+  font-weight:700;
+  font-size:0.9rem;
+  color:#fff;
+  background: rgba(0,0,0,0.6);
+  padding:6px 8px;
+  border-radius:6px;
+}
+
+/* BOTTOM BLOCK: permitimos apilar varias alertas */
+.bottom-block{
+  grid-column: 1 / -1;
+  margin-top: 18px;
+  display:flex;
+  justify-content:center;
+  pointer-events: none;
+}
+.bottom-stack{
+  width:100%;
+  max-width:900px;
+  display:flex;
+  flex-direction: column;
+  gap:10px;
+  align-items: stretch;
+  pointer-events: auto;
+}
+.bottom-hidden{ opacity:0; transform: translateY(18px) scale(.98); transition: all .28s ease; }
+.bottom-visible{ opacity:1; transform: translateY(0) scale(1); transition: all .28s ease; }
+
+/* Cada alerta individual */
+.bottom-content{
+  background:var(--panel);
+  border-radius:12px;
+  padding:12px 16px;
+  box-shadow: var(--shadow);
+  border: 3px solid rgba(0,0,0,0.06);
+  display:flex;
+  gap:12px;
+  align-items:center;
+  justify-content:flex-start;
+}
+.alert-dot{
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  background:var(--danger);
+  box-shadow: 0 6px 18px rgba(231,76,60,0.12);
+}
+.bottom-content.small{ padding:10px; font-size:0.95rem; }
+
+/* mini-log */
+.log{
+  background:#fbfcfd;
+  border-radius:8px;
+  padding:10px;
+  border:1px solid #f0f2f3;
+  min-height:120px;
+  overflow:auto;
+  white-space: pre-wrap;
+}
+
+/* responsive */
+@media (max-width:1100px){
+  .layout-grid{ grid-template-columns: 1fr; padding:0 10px; }
+  .side-panel{ min-height: auto; }
+  .video-container{ height: 320px; }
+}
