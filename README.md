@@ -39,8 +39,8 @@ Un asistente inteligente en tiempo real que detecta objetos en tu cocina usando 
 
 ```bash
 # Clona el repositorio
-git clone https://github.com/tuusuario/asistente-cocina-ia.git
-cd asistente-cocina-ia
+git clone https://github.com/PMAranda/Asistente-Cocina-Inteligencia-Artificial
+cd Asistente-Cocina-Inteligencia-Artificial
 
 # Abre directamente en tu navegador
 # No requiere instalación de dependencias adicionales
